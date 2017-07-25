@@ -38,13 +38,6 @@ do_install () {
     install -m 0664 ${WORKDIR}/init.d ${D}${sysconfdir}/init.d/squeezelite
 }
 
-#pkg_postinst_${PN}() {
-#    if [ ! -d $D/home/root/.config/pianobar ]; then
-#        mkdir -p $D/home/root/.config/pianobar
-#        cp $D/${datadir}/pianobar/config $D/home/root/.config/pianobar/config
-#    fi
-#}
-
 RDEPENDS_${PN} += ""
 
 FILES_${PN} = "${bindir} ${sysconfdir}"
