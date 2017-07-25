@@ -1,0 +1,31 @@
+ctrl_interface=/var/run/wpa_supplicant
+ctrl_interface_group=root
+country=DE
+update_config=1
+fast_reauth=1
+ap_scan=1
+
+#network={
+#    key_mgmt=WPA-PSK
+#    ssid="<ssid>"
+#    psk="<passphrase>"
+#}
+
+# open network
+#network={
+#    key_mgmt=NONE
+#    ssid="<ssid>"
+#}
+
+network={
+        ssid="stachelnet4"
+        scan_ssid=1
+
+        proto=RSN
+        key_mgmt=WPA-PSK
+        pairwise=CCMP
+        group=CCMP
+        psk="12503209"
+}
+
+
