@@ -24,6 +24,4 @@ SRC_URI = " \
 #SRCREV = "6cbb61107bfb3f92e2ad7dfdc7ae4493812d8835"
 #SRC_URI = "git://github.com/shaffenmeister/ympd;protocol=git"
 
-# EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE:STRING="
-
 inherit pkgconfig cmake
