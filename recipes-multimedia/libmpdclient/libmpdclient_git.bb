@@ -5,7 +5,7 @@ SECTION = "audio"
 DEPENDS = "meson ninja"
 
 PR = "r1"
-PV = "2.1.3"
+PV = "2.13"
 
 LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://COPYING;md5=06b9dfd2f197dc514d8ef06549684b77"
