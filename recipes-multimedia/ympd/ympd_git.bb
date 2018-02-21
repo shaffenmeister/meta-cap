@@ -5,8 +5,8 @@ SECTION = "audio"
 DEPENDS = "libmpdclient"
 RDEPENDS_ympd = "libmpdclient (>=2.0)"
 
-PR = "r1"
-PV = "1.2.3"
+PR = "r2"
+PV = "1.3.0"
 
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=eb723b61539feef013de476e68b5c50a"
