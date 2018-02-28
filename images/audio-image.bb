@@ -50,9 +50,15 @@ AUDIO = " \
     squeezelite \
  "
 
+MUSICPD = " \
+    mpd \
+    mpc \
+"
+
 IMAGE_INSTALL += " \
     ${ALSA} \
     ${AUDIO} \
+    ${MUSICPD} \
     ${CORE_OS} \
     ${WIFI_SUPPORT} \
  "
