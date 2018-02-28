@@ -103,12 +103,35 @@ RPI_STUFF = " \
     userland \
 "
 
+ALSA += " \
+    libasound \
+    libavcodec \
+    libavdevice \
+    libavfilter \
+    libavformat \
+    libavutil \
+    libpostproc \
+    libswresample \
+    libswscale \
+    alsa-conf \
+    alsa-utils \
+    alsa-utils-scripts \
+ "
+
+AUDIO = " \
+    squeezelite \
+    mpd \
+    mpc \
+ "
+
 IMAGE_INSTALL += " \
     ${CAN_TOOLS} \
     ${CORE_OS} \
     ${DEV_SDK_INSTALL} \
     ${DEV_EXTRAS} \
     ${EXTRA_TOOLS_INSTALL} \
+    ${AUDIO} \
+    ${ALSA} \
     ${RPI_STUFF} \
     ${WIFI_SUPPORT} \
 "
