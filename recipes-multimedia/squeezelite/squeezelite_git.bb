@@ -1,4 +1,4 @@
-DESCRIPTION = "Squeezelite v1.8"
+DESCRIPTION = "Squeezelite v1.9"
 AUTHOR = "Adrian Smith, Ralph Irving"
 HOMEPAGE = "https://github.com/ralph-irving/squeezelite"
 LICENSE = "GPLv3"
@@ -11,10 +11,10 @@ OPTS = "-DDSD -DFFMPEG -DGPIO -DRESAMPLE"
 TARGET_CFLAGS  += "-Wall -fPIC -O2 ${OPTS}"
 TARGET_LDFLAGS += "-lasound -lpthread -lm -lrt"
 
-PR = "r4"
-PV = "v1.8.7-1052"
+PR = "r5"
+PV = "v1.9.0-1098"
 
-SRCREV = "37f5fe68b05d155cdb8ae68435e3ae13c6ef2403"
+SRCREV = "b2ed99e5038c636301997c9459c496c47f4d7976"
 
 SRC_URI = " \
     git://github.com/ralph-irving/squeezelite.git;protocol=git \
