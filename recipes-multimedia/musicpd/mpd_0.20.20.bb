@@ -38,6 +38,10 @@ DEPENDS += " \
     libupnp \
 "
 
+RDEPENDS_REMOVE += " \
+    omxplayer \
+"
+
 #    openal-soft
 
 # While this item does not require it, it depends on mpg123 which does
@@ -47,8 +51,8 @@ SRC_URI = " \
     http://www.musicpd.org/download/${BPN}/0.20/${BP}.tar.xz \
     file://mpd.conf.in \
 "
-SRC_URI[md5sum] = "8dc87ba95473fd738f2aff9bd69cc212"
-SRC_URI[sha256sum] = "6a582dc2ae90b94ff3853f9ffd7d80b2c2b5fe2e2c35cb1da0b36f3f3dfad434"
+SRC_URI[md5sum] = "c9c3529f605ef69b1574c932e5e8f566"
+SRC_URI[sha256sum] = "a9e458c6e07cdf62649de7722e1e5a7f13aa82eeb397bfbbebc07cf5cf273584"
 
 EXTRA_OECONF = "enable_bzip2=yes"
 EXTRA_OECONF += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '--with-systemdsystemunitdir=${systemd_unitdir}/system/', '--without-systemdsystemunitdir', d)}"
