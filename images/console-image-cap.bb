@@ -10,6 +10,7 @@ inherit core-image
 DEPENDS += "bcm2835-bootfiles"
 
 CORE_OS = " \
+    kernel-modules \
     openssh openssh-keygen openssh-sftp-server \
     term-prompt \
     tzdata \
@@ -51,9 +52,7 @@ DEV_SDK_INSTALL = " \
     libstdc++-dev \
     libtool \
     make \
-    perl-modules \
     pkgconfig \
-    python-modules \
     python3-modules \
     python3-pydoc \
 "
@@ -74,6 +73,7 @@ EXTRA_TOOLS_INSTALL = " \
     findutils \
     i2c-tools \
     iperf3 \
+    iptables \
     iproute2 \
     less \
     memtester \
@@ -94,9 +94,7 @@ CAN_TOOLS = " \
 "
 
 RPI_STUFF = " \
-    bcm2835-tests \
     omxplayer \
-    pi-blaster \
     raspi2fb \
     rpio \
     rpi-gpio \
@@ -104,7 +102,6 @@ RPI_STUFF = " \
 "
 
 ALSA += " \
-    libasound \
     libavcodec \
     libavdevice \
     libavfilter \
@@ -113,6 +110,7 @@ ALSA += " \
     libpostproc \
     libswresample \
     libswscale \
+    libasound \
     alsa-conf \
     alsa-utils \
     alsa-utils-scripts \
@@ -121,6 +119,7 @@ ALSA += " \
 AUDIO = " \
     squeezelite \
     mpc \
+    mpd \
  "
 
 IMAGE_INSTALL += " \
