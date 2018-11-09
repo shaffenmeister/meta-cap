@@ -6,17 +6,18 @@ DEPENDS = "libsoxr openssl avahi alsa-lib alsa-utils alsa-tools alsa-plugins lib
 RDEPENDS_${PN} = "libsoxr (>=0.1.2)"
 
 PR = "r1"
-PV = "3.1"
+PV = "3.2.2"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENSES;md5=07500f0fdc8de2e270a9f0b8b1857ecd"
+LIC_FILES_CHKSUM = "file://LICENSES;md5=9f329b7b34fcd334fb1f8e2eb03d33ff"
 
 #FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 EXTRA_OECONF += " --with-ssl=openssl --with-avahi --with-alsa --with-soxr --with-metadata --with-configfiles=no"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "46f5632af1dff351d8d615f3da7c4a885dd0b7be"
+SRCREV = "c9b5df2114783abfa6567fa5a76b206989306fe2"
+
 SRC_URI = " \
 		git://github.com/mikebrady/shairport-sync;protocol=git \
 	  "
