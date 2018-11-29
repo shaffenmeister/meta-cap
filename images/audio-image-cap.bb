@@ -27,7 +27,6 @@ WIFI_SUPPORT = " \
     linux-firmware-rtl8192ce \
     linux-firmware-rtl8192cu \
     linux-firmware-rtl8192su \
-    wireless-tools \
     wpa-supplicant \
 "
 
@@ -44,11 +43,15 @@ ALSA += " \
     alsa-conf \
     alsa-utils \
     alsa-utils-scripts \
- "
+"
+
+RPI_STUFF = " \
+    omxplayer \
+"
 
 AUDIO = " \
     squeezelite \
- "
+"
 
 MUSICPD = " \
     mpd \
@@ -60,8 +63,9 @@ IMAGE_INSTALL += " \
     ${AUDIO} \
     ${MUSICPD} \
     ${CORE_OS} \
+    ${RPI_STUFF} \
     ${WIFI_SUPPORT} \
- "
+"
 
 set_local_timezone() {
     ln -sf /usr/share/zoneinfo/Europe/Berlin ${IMAGE_ROOTFS}/etc/localtime
