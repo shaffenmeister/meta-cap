@@ -86,6 +86,7 @@ EXTRA_TOOLS_INSTALL = " \
     util-linux \
     wget \
     zip \
+    mc \
 "
 
 CAN_TOOLS = " \
