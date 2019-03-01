@@ -6,16 +6,16 @@ DEPENDS = "alsa-lib "
 RDEPENDS_${PN} = ""
 
 PR = "r1"
-PV = "1.5"
+PV = "1.6"
 
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+LICENSE = "ISC"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=de2331727b476fb3c5eb43114ccf2f28"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "4169d70b7d577dac6e4e87871ccde6bdcd221c3b"
+SRCREV = "5af730fa04a512a2881ec67eab6aba2d6c235cea"
 SRC_URI = " \
 		git://github.com/bmc0/dsp.git;protocol=git \
 	  "
