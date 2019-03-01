@@ -51,6 +51,8 @@ RPI_STUFF = " \
 
 AUDIO = " \
     squeezelite \
+    ladspa-sdk \
+    bmc0-dsp \
 "
 
 MUSICPD = " \
