@@ -94,7 +94,6 @@ CAN_TOOLS = " \
 "
 
 RPI_STUFF = " \
-    omxplayer \
     raspi2fb \
     rpio \
     rpi-gpio \
@@ -120,6 +119,7 @@ AUDIO = " \
     squeezelite \
     mpc \
     mpd \
+    omxplayer \
  "
 
 IMAGE_INSTALL += " \

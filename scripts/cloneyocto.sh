@@ -1,5 +1,5 @@
 #!/bin/bash
-BRANCH="thud"
+BRANCH="warrior"
 RELEASE="poky"
 OPERATION="clone -b"
 #OPERATION="checkout"

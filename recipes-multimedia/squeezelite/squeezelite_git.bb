@@ -4,17 +4,17 @@ HOMEPAGE = "https://github.com/ralph-irving/squeezelite"
 LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=4a6efe45e946fda532470a3da05195c3"
 
-DEPENDS = "alsa-lib alsa-utils alsa-tools alsa-plugins flac libogg libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr"
-RDEPENDS_${PN} = "flac (>=1.3) libogg (>=1.3.0) libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr (>=0.1.0)"
+DEPENDS = "alsa-lib alsa-utils alsa-tools alsa-plugins flac libogg libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr wiringpi"
+RDEPENDS_${PN} = "flac (>=1.3) libogg (>=1.3.0) libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr (>=0.1.0) wiringpi"
 
-OPTS = "-DDSD -DFFMPEG -DRESAMPLE"
+OPTS = "-DDSD -DFFMPEG -DRESAMPLE -DGPIO -DIR -DRPI"
 TARGET_CFLAGS  += "-Wall -fPIC -O2 ${OPTS}"
 TARGET_LDFLAGS += "-lasound -lpthread -lm -lrt"
 
 PR = "r5"
-PV = "v1.9.0-1130"
+PV = "v1.9.2-1165"
 
-SRCREV = "451cad8da651073d18118fb9ca39faef550825ff"
+SRCREV = "b265c78e583b2c45d6f3ae9d6168776c4da0347e"
 
 SRC_URI = " \
     git://github.com/ralph-irving/squeezelite.git;protocol=git \

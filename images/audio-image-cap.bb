@@ -1,32 +1,32 @@
-SUMMARY = "minimal image running squeezelite"
-HOMEPAGE = ""
-LICENSE = "MIT"
+SUMMARY = "A minimal console image that runs pianobar"
+HOMEPAGE = "http://www.jumpnowtek.com"
 
 IMAGE_LINGUAS = "en-us"
 
-inherit core-image
+inherit image
 
 DEPENDS += "bcm2835-bootfiles"
 
 CORE_OS = " \
+    firewall \
+    ifupdown \
+    iptables \
+    kernel-modules \
     ntp \
     ntp-tickadj \
     openssh openssh-keygen openssh-sftp-server \
+    packagegroup-core-boot \
     procps \
+    rndaddtoentcnt \
+    rng-tools \
     term-prompt \
     tzdata \
-    tzdata-europe \
-    tzdata-posix \
 "
 
 WIFI_SUPPORT = " \
     crda \
     iw \
-    linux-firmware-bcm43430 \
-    linux-firmware-ralink \
-    linux-firmware-rtl8192ce \
-    linux-firmware-rtl8192cu \
-    linux-firmware-rtl8192su \
+    linux-firmware-raspbian \
     wpa-supplicant \
 "
 
@@ -41,36 +41,29 @@ ALSA += " \
     libswresample \
     libswscale \
     alsa-conf \
+    alsa-state \
     alsa-utils \
     alsa-utils-scripts \
-"
-
-RPI_STUFF = " \
-    omxplayer \
 "
 
 AUDIO = " \
     squeezelite \
     ladspa-sdk \
     bmc0-dsp \
-"
-
-MUSICPD = " \
+    omxplayer \
     mpd \
-    mpc \
 "
 
 IMAGE_INSTALL += " \
     ${ALSA} \
     ${AUDIO} \
-    ${MUSICPD} \
     ${CORE_OS} \
-    ${RPI_STUFF} \
     ${WIFI_SUPPORT} \
+    iqaudio-mute \
 "
 
 set_local_timezone() {
-    ln -sf /usr/share/zoneinfo/Europe/Berlin ${IMAGE_ROOTFS}/etc/localtime
+    ln -sf /usr/share/zoneinfo/EST5EDT ${IMAGE_ROOTFS}/etc/localtime
 }
 
 disable_bootlogd() {
@@ -82,4 +75,4 @@ ROOTFS_POSTPROCESS_COMMAND += " \
     disable_bootlogd ; \
  "
 
-export IMAGE_BASENAME = "audio-image-cap"
+export IMAGE_BASENAME = "audio-image"
