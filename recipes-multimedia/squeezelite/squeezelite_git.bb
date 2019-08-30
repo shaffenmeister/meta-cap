@@ -12,12 +12,13 @@ TARGET_CFLAGS  += "-Wall -fPIC -O2 ${OPTS}"
 TARGET_LDFLAGS += "-lasound -lpthread -lm -lrt"
 
 PR = "r5"
-PV = "v1.9.2-1165"
+PV = "v1.9.5-1193"
 
-SRCREV = "b265c78e583b2c45d6f3ae9d6168776c4da0347e"
+SRCREV = "f5030482fcbb797e3927aba37d94d57dfa1e72b4"
 
 SRC_URI = " \
     git://github.com/ralph-irving/squeezelite.git;protocol=git \
+    file://0001-ir-accept-single-digits-for-repeat-count-as-issued-by-inputlirc.patch \
     file://default \
     file://init \
  "
