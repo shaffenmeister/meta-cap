@@ -17,6 +17,8 @@ CORE_OS = " \
     tzdata \
     tzdata-europe \
     tzdata-posix \
+    ntp \
+    ntp-tickadj \
 "
 
 WIFI_SUPPORT = " \
@@ -73,7 +75,7 @@ CAN_TOOLS = " \
     canutils \
 "
 
-IMAGE_INSTALL = "\
+IMAGE_INSTALL = " \
     ${CORE_OS} \
     ${WIFI_SUPPORT} \
     ${WIREGUARD_SUPPORT} \
@@ -81,7 +83,7 @@ IMAGE_INSTALL = "\
     ${DEV_EXTRAS} \
     ${CAN_TOOLS} \
     rt-app \
-	schedtool-dl \
-	"
+    schedtool-dl \
+    "
 	
 export IMAGE_BASENAME = "console-image-cap-rt"

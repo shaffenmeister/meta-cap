@@ -134,17 +134,4 @@ IMAGE_INSTALL += " \
     ${WIFI_SUPPORT} \
 "
 
-set_local_timezone() {
-    ln -sf /usr/share/zoneinfo/Europe/Paris ${IMAGE_ROOTFS}/etc/localtime
-}
-
-disable_bootlogd() {
-    echo BOOTLOGD_ENABLE=no > ${IMAGE_ROOTFS}/etc/default/bootlogd
-}
-
-ROOTFS_POSTPROCESS_COMMAND += " \
-    set_local_timezone ; \
-    disable_bootlogd ; \
- "
-
 export IMAGE_BASENAME = "console-image-cap"
