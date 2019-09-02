@@ -1,0 +1,77 @@
+--- squeezelite-github/ir.c	2019-08-30 08:43:42.037147697 +0200
++++ ir.c	2019-08-29 19:09:56.180879127 +0200
+@@ -1,14 +1,14 @@
+-/* 
++/*
+  *  Squeezelite - lightweight headless squeezebox emulator
+  *
+  *  (c) Adrian Smith 2012-2015, triode1@btinternet.com
+  *      Ralph Irving 2015-2017, ralph_irving@hotmail.com
+- *  
++ *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation, either version 3 of the License, or
+  * (at your option) any later version.
+- * 
++ *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+@@ -69,7 +69,7 @@
+ #define LIRC(h, fn, ...) (h)->lirc_##fn(__VA_ARGS__)
+ #endif
+ 
+-// cmds based on entries in Slim_Device_Remote.ir
++// cmds based on entires in Slim_Device_Remote.ir
+ // these may appear as config entries in .lircrc files
+ static struct {
+ 	char  *cmd;
+@@ -97,9 +97,9 @@
+ 	{ "KEY_VOLUMEDOWN", 0x768900ff, true  },
+ 	{ "KEY_VOLUMEUP",   0x7689807f, true  },
+ 	{ "KEY_PREVIOUS",   0x7689c03f, false },
+-	{ "KEY_REWIND",     0x7689c03f, false },
++	{ "KEY_REWIND",     0x7689c03f, false }, // false
+ 	{ "KEY_NEXT",       0x7689a05f, false },
+-	{ "KEY_FORWARD",    0x7689a05f, false },
++	{ "KEY_FORWARD",    0x7689a05f, false }, // false
+ 	{ "KEY_PAUSE",      0x768920df, true  },
+ 	{ "KEY_PLAY",       0x768910ef, false },
+ 	{ "KEY_POWER",      0x768940bf, false },
+@@ -120,8 +120,12 @@
+ static u32_t ir_key_map(const char *c, const char *r) {
+ 	int i;
+ 	for (i = 0; keymap[i].lirc; i++) {
++		LOG_DEBUG("ir_key_map: c=>>%s<< r=>>%s<< lirc key=>>%s<<",c,r,keymap[i].lirc);
+ 		if (!strcmp(c, keymap[i].lirc)) {
+-			if (keymap[i].repeat || !strcmp(r, "00")) {
++			LOG_DEBUG("key %s found (repeat: %d)",c,keymap[i].repeat);
++
++//			if (keymap[i].repeat || !strcmp(r, "00")) {
++			if (keymap[i].repeat || !strcmp(r, "0") || !strcmp(r,"00")) {
+ 				return keymap[i].code;
+ 			}
+ 			LOG_DEBUG("repeat suppressed");
+@@ -147,6 +151,8 @@
+ 			char *c;
+ 			while (LIRC(i, code2char, config, code, &c) == 0 && c != NULL) {
+ 				ir_code = ir_cmd_map(c);
++				LOG_DEBUG("ir cmd: analysing %s %x", c, ir_code);
++
+ 				if (ir_code) {
+ 					LOG_DEBUG("ir cmd: %s -> %x", c, ir_code);
+ 				}
+@@ -157,9 +163,12 @@
+ 			// try to match on lirc button name if it is from the standard namespace
+ 			// this allows use of non slim remotes without a specific entry in .lircrc
+ 			char *b, *r;
++			LOG_DEBUG("ir lirc standard code: >>%s<<", code);
++
+ 			strtok(code, " \n");     // discard
+ 			r = strtok(NULL, " \n"); // repeat count
+ 			b = strtok(NULL, " \n"); // key name
++			LOG_DEBUG("ir lirc standard code: >>r=%s b=%s<<", r,b);
+ 			if (r && b) {
+ 				ir_code = ir_key_map(b, r);
+ 				LOG_DEBUG("ir lirc: %s [%s] -> %x", b, r, ir_code);
