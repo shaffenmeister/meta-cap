@@ -12,9 +12,9 @@ TARGET_CFLAGS  += "-Wall -fPIC -O2 ${OPTS}"
 TARGET_LDFLAGS += "-lasound -lpthread -lm -lrt -ldl"
 
 PR = "r5"
-PV = "v1.9.6-1195"
+PV = "v1.9.6-1198"
 
-SRCREV = "0aae3b1f8e7e92064f93f84f1cedbc76d85bef2c"
+SRCREV = "1c1f429ae9494748fe0fa5807c3a22710edaa12f"
 
 SRC_URI = " \
     git://github.com/ralph-irving/squeezelite.git;protocol=git \
