@@ -1,34 +1,9 @@
-SUMMARY = "A minimal console image that runs pianobar"
-HOMEPAGE = "http://www.jumpnowtek.com"
+SUMMARY = "A minimal console image that runs squeezelite"
+HOMEPAGE = ""
 
-IMAGE_LINGUAS = "en-us"
-
-inherit image
+require images/basic-dev-image.bb
 
 DEPENDS += "bcm2835-bootfiles"
-
-CORE_OS = " \
-    firewall \
-    ifupdown \
-    iptables \
-    kernel-modules \
-    ntp \
-    ntp-tickadj \
-    openssh openssh-keygen openssh-sftp-server \
-    packagegroup-core-boot \
-    procps \
-    rndaddtoentcnt \
-    rng-tools \
-    term-prompt \
-    tzdata \
-"
-
-WIFI_SUPPORT = " \
-    crda \
-    iw \
-    linux-firmware-raspbian \
-    wpa-supplicant \
-"
 
 ALSA += " \
     libasound \
@@ -57,22 +32,6 @@ AUDIO = " \
 IMAGE_INSTALL += " \
     ${ALSA} \
     ${AUDIO} \
-    ${CORE_OS} \
-    ${WIFI_SUPPORT} \
-    iqaudio-mute \
 "
 
-set_local_timezone() {
-    ln -sf /usr/share/zoneinfo/EST5EDT ${IMAGE_ROOTFS}/etc/localtime
-}
-
-disable_bootlogd() {
-    echo BOOTLOGD_ENABLE=no > ${IMAGE_ROOTFS}/etc/default/bootlogd
-}
-
-ROOTFS_POSTPROCESS_COMMAND += " \
-    set_local_timezone ; \
-    disable_bootlogd ; \
- "
-
-export IMAGE_BASENAME = "audio-image"
+export IMAGE_BASENAME = "audio-image-cap"

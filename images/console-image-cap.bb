@@ -2,27 +2,15 @@ SUMMARY = "A console development image with some C/C++ dev tools"
 HOMEPAGE = ""
 LICENSE = "MIT"
 
-IMAGE_FEATURES += "package-management splash"
-IMAGE_LINGUAS = "en-us"
-
-inherit core-image
+require images/basic-dev-image.bb
 
 DEPENDS += "bcm2835-bootfiles"
 
-CORE_OS = " \
-    kernel-modules \
-    openssh openssh-keygen openssh-sftp-server \
-    term-prompt \
-    tzdata \
-    tzdata-europe \
-    tzdata-posix \
-"
-
-
-WIFI_SUPPORT = " \
+WIFI = " \
     crda \
     iw \
-    linux-firmware-bcm43430 \
+    linux-firmware-rpidistro-bcm43430 \
+    linux-firmware-rpidistro-bcm43455 \
     linux-firmware-ralink \
     linux-firmware-rtl8192ce \
     linux-firmware-rtl8192cu \
@@ -30,63 +18,9 @@ WIFI_SUPPORT = " \
     wpa-supplicant \
 "
 
-DEV_SDK_INSTALL = " \
-    binutils \
-    binutils-symlinks \
-    coreutils \
-    cpp \
-    cpp-symlinks \
-    diffutils \
-    file \
-    g++ \
-    g++-symlinks \
-    gcc \
-    gcc-symlinks \
-    gdb \
-    gdbserver \
-    gettext \
-    git \
-    ldd \
-    libstdc++ \
-    libstdc++-dev \
-    libtool \
-    make \
-    pkgconfig \
-    python3-modules \
-    python3-pydoc \
-"
-
 DEV_EXTRAS = " \
-    ntp \
-    ntp-tickadj \
     serialecho  \
     spiloop \
-"
-
-EXTRA_TOOLS_INSTALL = " \
-    bzip2 \
-    devmem2 \
-    dosfstools \
-    ethtool \
-    fbset \
-    findutils \
-    i2c-tools \
-    iperf3 \
-    iptables \
-    iproute2 \
-    less \
-    memtester \
-    nano \
-    netcat \
-    procps \
-    rsync \
-    sysfsutils \
-    tcpdump \
-    unzip \
-    util-linux \
-    wget \
-    zip \
-    mc \
 "
 
 CAN_TOOLS = " \
@@ -100,38 +34,11 @@ RPI_STUFF = " \
     userland \
 "
 
-ALSA += " \
-    libavcodec \
-    libavdevice \
-    libavfilter \
-    libavformat \
-    libavutil \
-    libpostproc \
-    libswresample \
-    libswscale \
-    libasound \
-    alsa-conf \
-    alsa-utils \
-    alsa-utils-scripts \
- "
-
-AUDIO = " \
-    squeezelite \
-    mpc \
-    mpd \
-    omxplayer \
- "
-
 IMAGE_INSTALL += " \
-    ${CAN_TOOLS} \
-    ${CORE_OS} \
-    ${DEV_SDK_INSTALL} \
+    ${WIFI} \
     ${DEV_EXTRAS} \
-    ${EXTRA_TOOLS_INSTALL} \
-    ${ALSA} \
-    ${AUDIO} \
+    ${CAN_TOOLS} \
     ${RPI_STUFF} \
-    ${WIFI_SUPPORT} \
 "
 
 export IMAGE_BASENAME = "console-image-cap"

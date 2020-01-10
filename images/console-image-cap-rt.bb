@@ -1,6 +1,7 @@
-inherit image
+SUMMARY = "A console image that runs linux with realtime patches"
+HOMEPAGE = ""
 
-IMAGE_FEATURES += "package-management splash"
+require images/basic-dev-image.bb
 
 DEPENDS += "bcm2835-bootfiles"
 DEPENDS += "(linux-raspberrypi-rt|linux-raspberrypi-rt-dev)"
@@ -10,18 +11,7 @@ python () {
         raise bb.parse.SkipPackage("Set PREFERRED_PROVIDER_virtual/kernel to linux-raspberrypi-rt to enable it")
 }
 
-CORE_OS = " \
-    kernel-modules \
-    openssh openssh-keygen openssh-sftp-server \
-    term-prompt \
-    tzdata \
-    tzdata-europe \
-    tzdata-posix \
-    ntp \
-    ntp-tickadj \
-"
-
-WIFI_SUPPORT = " \
+WIFI = " \
     crda \
     iw \
     linux-firmware-bcm43430 \
@@ -30,40 +20,6 @@ WIFI_SUPPORT = " \
     linux-firmware-rtl8192cu \
     linux-firmware-rtl8192su \
     wpa-supplicant \
-"
-
-WIREGUARD_SUPPORT = " \
-    wireguard-init \
-    wireguard-module \
-    wireguard-tools \
-"
-
-DEV_SDK_INSTALL = " \
-    binutils \
-    binutils-symlinks \
-    coreutils \
-    cpp \
-    cpp-symlinks \
-    diffutils \
-    elfutils elfutils-binutils \
-    file \
-    g++ \
-    g++-symlinks \
-    gcc \
-    gcc-symlinks \
-    gdb \
-    gdbserver \
-    gettext \
-    git \
-    ldd \
-    libstdc++ \
-    libstdc++-dev \
-    libtool \
-    ltrace \
-    make \
-    pkgconfig \
-    python3-modules \
-    strace \
 "
 
 DEV_EXTRAS = " \
@@ -75,11 +31,8 @@ CAN_TOOLS = " \
     canutils \
 "
 
-IMAGE_INSTALL = " \
-    ${CORE_OS} \
-    ${WIFI_SUPPORT} \
-    ${WIREGUARD_SUPPORT} \
-    ${DEV_SDK_INSTALL} \
+IMAGE_INSTALL += " \
+    ${WIFI} \
     ${DEV_EXTRAS} \
     ${CAN_TOOLS} \
     rt-app \
