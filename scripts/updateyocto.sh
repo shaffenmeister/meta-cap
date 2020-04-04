@@ -3,7 +3,7 @@ RELEASE="poky"
 
 echo "Upgrading ${RELEASE} ..."
 
-folders=("meta-cap" "${RELEASE}" "${RELEASE}/meta-openembedded" "${RELEASE}/meta-qt5" "${RELEASE}/meta-raspberrypi" "${RELEASE}/meta-readonly-rootfs-overlay" "${RELEASE}/meta-security" "meta-rpi" "${RELEASE}/meta-realtime")
+folders=("meta-cap" "${RELEASE}" "${RELEASE}/meta-openembedded" "${RELEASE}/meta-qt5" "${RELEASE}/meta-raspberrypi" "${RELEASE}/meta-readonly-rootfs-overlay" "${RELEASE}/meta-security" "meta-rpi" "${RELEASE}/meta-jumpnow" "${RELEASE}/meta-realtime")
 
 curfolder=$(pwd)
 

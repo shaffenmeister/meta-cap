@@ -15,4 +15,4 @@ bitbake audio-image-cap
 bitbake console-image
 bitbake qt5-basic-image
 bitbake qt5-image
-bitbake py3qt-image
+#bitbake py3qt-image

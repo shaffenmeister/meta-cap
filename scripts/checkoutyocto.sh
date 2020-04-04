@@ -1,6 +1,6 @@
 #!/bin/bash
-BRANCH="sumo"
-NEWBRANCH="thud"
+BRANCH="warrior"
+NEWBRANCH="zeus"
 RELEASE="poky"
 
 OPERATION="checkout"
@@ -9,7 +9,7 @@ echo "Operation ${OPERATION} on ${RELEASE} ..."
 
 for pkt in ${RELEASE} ${RELEASE}/meta-qt5 ${RELEASE}/meta-security ${RELEASE}/meta-raspberrypi ${RELEASE}/meta-openembedded
 do
-  cd "/home/cappel/dev/rpi/yocto/${pkt}"
+  cd "/home/cappel/rpi/${pkt}"
   pwd
   git ${OPERATION} ${NEWBRANCH}
 done

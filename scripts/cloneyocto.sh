@@ -1,5 +1,5 @@
 #!/bin/bash
-BRANCH="warrior"
+BRANCH="zeus"
 RELEASE="poky"
 OPERATION="clone -b"
 #OPERATION="checkout"
