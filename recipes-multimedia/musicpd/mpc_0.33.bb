@@ -9,8 +9,8 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
 SRC_URI="http://www.musicpd.org/download/mpc/0/${BP}.tar.xz"
-SRC_URI[md5sum] = "a921749b37caa9a486e41b354b9e0060"
-SRC_URI[sha256sum] = "7961d95b7ce019996beab281cf957e905667c989c53fffd13ade5e62fea331c7"
+SRC_URI[md5sum] = "7d1f5c308b5df1f2af0a01360a235af2"
+SRC_URI[sha256sum] = "4f40ccbe18f5095437283cfc525a97815e983cbfd3a29e48ff610fa4f1bf1296"
 
 inherit pkgconfig meson
 
