@@ -27,6 +27,7 @@ AUDIO = " \
     bmc0-dsp \
     omxplayer \
     mpd \
+    mpc \
 "
 
 IMAGE_INSTALL += " \
