@@ -16,14 +16,12 @@ CORE_OS = " \
 "
 
 KERNEL_EXTRA = " \
-    cryptodev-module \
     kernel-modules \
-    load-modules \
 "
 
 WIREGUARD = " \
     wireguard-init \
-    wireguard-module \
+    ${@bb.utils.contains('WIREGUARD_COMPAT', '1', 'wireguard-module', '', d)} \
     wireguard-tools \
 "
 
@@ -94,6 +92,14 @@ SECURITY_TOOLS = " \
     python3-scapy \
 "
 
+WIFI = " \
+    crda \
+    iw \
+    linux-firmware-rpidistro-bcm43430 \
+    linux-firmware-rpidistro-bcm43455 \
+    wpa-supplicant \
+"
+
 IMAGE_INSTALL += " \
     ${CORE_OS} \
     ${DEV_SDK} \
@@ -101,6 +107,7 @@ IMAGE_INSTALL += " \
     ${KERNEL_EXTRA} \
     ${SECURITY_TOOLS} \
     ${WIREGUARD} \
+    ${WIFI} \
 "
 
 IMAGE_FILE_BLACKLIST += " \
@@ -138,4 +145,4 @@ ROOTFS_POSTPROCESS_COMMAND += " \
     create_opt_dir ; \
 "
 
-export IMAGE_BASENAME = "basic-dev-image"
+export IMAGE_BASENAME = "basic-dev-image-cap"
