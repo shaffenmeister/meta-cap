@@ -1,4 +1,4 @@
-DESCRIPTION = "Squeezelite v1.9"
+DESCRIPTION = "Squeezelite v1.9.7"
 AUTHOR = "Adrian Smith, Ralph Irving"
 HOMEPAGE = "https://github.com/ralph-irving/squeezelite"
 LICENSE = "GPLv3"
@@ -12,13 +12,12 @@ TARGET_CFLAGS  += "-Wall -fPIC -O2 ${OPTS}"
 TARGET_LDFLAGS += "-lasound -lpthread -lm -lrt -ldl"
 
 PR = "r5"
-PV = "v1.9.7-1218"
+PV = "v1.9.7-1260"
 
-SRCREV = "57108946f2117ea0552eab271b81c48fd14387e7"
+SRCREV = "59fea822893f94f54c141d0b07019ec45e7fa095"
 
 SRC_URI = " \
     git://github.com/ralph-irving/squeezelite.git;protocol=git \
-    file://0001-ir-accept-single-digits-for-repeat-count-as-issued-by-inputlirc.patch \
     file://default \
     file://init \
  "
