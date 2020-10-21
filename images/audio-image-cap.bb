@@ -3,7 +3,7 @@ HOMEPAGE = ""
 
 inherit image
 
-DEPENDS += "bcm2835-bootfiles"
+DEPENDS += "bootfiles"
 
 
 CORE_OS = " \
