@@ -1,18 +1,28 @@
 #!/bin/bash
 RELEASE="poky"
-BUILDDIR=$1
+IMAGES=("console-image" "console-image-cap" "audio-image-cap" "qt5-basic-image" "qt5-image")
 
-if [ ! -d "$BUILDDIR" ]; then
-  exit 1
-fi
+curdir=$(pwd)
+startdir=$1
+shift
+args="$*"
 
-echo Build dir: $BUILDDIR
-source ${RELEASE}/oe-init-build-env $BUILDDIR
-echo $(pwd)
-echo Starting builds...
-bitbake console-image-cap
-bitbake audio-image-cap
-bitbake console-image
-bitbake qt5-basic-image
-bitbake qt5-image
-#bitbake py3qt-image
+echo "Start dir: ${startdir}"
+
+for cdir in ${args[@]}
+do
+  echo "Processing ${cdir}"
+  cd "${startdir}"
+
+  if [ -d "$cdir" ]; then
+    source ${RELEASE}/oe-init-build-env $cdir
+    echo "$(pwd)"
+    echo "Starting build..."
+    bitbake "${IMAGES[@]}"
+  fi
+done
+
+cd "${curdir}"
+
+
+
