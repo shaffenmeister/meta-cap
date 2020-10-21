@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 RELEASE="poky"
 
 echo "Upgrading ${RELEASE} ..."
@@ -9,10 +9,9 @@ curfolder=$(pwd)
 
 for i in "${folders[@]}"
 do
-   :
    cd $curfolder/$i
    echo $(pwd)
-   git pull
+   git pull --recurse-submodules
 done
 
 cd $curfolder
