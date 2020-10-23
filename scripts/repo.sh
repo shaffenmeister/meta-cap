@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 RELEASE="poky"
 BRANCH="dunfell"
-OPERATION="clone"
 
 curdir=$(pwd)
 op="$1"
@@ -43,14 +42,14 @@ function doupdate {
   do
     folder=$(sed -e "s/\.git$//" <<< $(basename "${repo}"))
     repodir="${dir}/${folder}"
-    echo "Folder: ${repodir}"
     cd "${repodir}"
+    echo "Folder: $(pwd)"
     git pull ${opts} 
   done
 }
 
-echo "Yocto base folder: ${pokydir}"
-echo "Board base folder: ${boarddir}"
+echo "Yocto folder: ${pokydir}"
+echo "Board folder: ${boarddir}"
 
 if [ "${op}" = "clone" ]; then
   if [ ! -d "${pokydir}" ]; then
@@ -62,16 +61,15 @@ if [ "${op}" = "clone" ]; then
   fi
 
   cd "${pokydir}"
-  doclone "${branch}" "${opts}" "${RELEASEREPO}"
+  doclone "${BRANCH}" "${opts}" "${RELEASEREPO}"
   cd "${RELEASE}"
-  doclone "${branch}" "${opts}" "${SUBREPOS[@]}"
+  doclone "${BRANCH}" "${opts}" "${SUBREPOS[@]}"
   cd "${boarddir}"
-  doclone "${branch}" "${opts}" "${BOARDREPOS[@]}"
+  doclone "${BRANCH}" "${opts}" "${BOARDREPOS[@]}"
   cd "${curdir}"
 elif [ "${op}" = "pull" ]; then
-  pokybase="${pokydir}/$(getfolderfromgituri "${RELEASEREPO}")"
-  doupdate "${pokydir}" "${opts}" "${RELEASEREPO}"
-  doupdate "${pokybase}" "${opts}" "${SUBREPOS[@]}"
+  doupdate "${pokydir}/.." "${opts}" "${RELEASEREPO}"
+  doupdate "${pokydir}" "${opts}" "${SUBREPOS[@]}"
   doupdate "${boarddir}" "${opts}" "${BOARDREPOS[@]}"
 fi
 

@@ -1,21 +1,19 @@
 #!/bin/bash
-RELEASE="poky"
 IMAGES=("console-image" "console-image-cap" "audio-image-cap" "qt5-basic-image" "qt5-image")
 
 curdir=$(pwd)
-startdir=$1
+pokydir=$1
 shift
-args="$*"
+builddirs="$*"
 
-echo "Start dir: ${startdir}"
+echo "Poky dir: ${pokydir}"
 
-for cdir in ${args[@]}
+for cdir in ${builddirs[@]}
 do
   echo "Processing ${cdir}"
-  cd "${startdir}"
 
   if [ -d "$cdir" ]; then
-    source ${RELEASE}/oe-init-build-env $cdir
+    source ${pokydir}/oe-init-build-env $cdir
     echo "$(pwd)"
     echo "Starting build..."
     bitbake "${IMAGES[@]}"
