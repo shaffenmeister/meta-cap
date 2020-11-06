@@ -32,23 +32,35 @@ function doclone {
 }
 
 function doupdate {
-  local dir="$1"
-  local opts="$2"
+  local opts="$1"
   shift
-  shift
-  local repos=("$@")
+  local folders=("$@")
 
-  for repo in ${repos[@]}
+  for folder in ${folders[@]}
   do
-    folder=$(sed -e "s/\.git$//" <<< $(basename "${repo}"))
-    repodir="${dir}/${folder}"
-    cd "${repodir}"
-    echo "Folder: $(pwd)"
-    git pull ${opts} 
+    cd "${folder}"
+    echo "Updating: $(pwd)"
+    git pull ${opts}
   done
 }
 
-echo "Yocto folder: ${pokydir}"
+function getrepofolders {
+  local basefolder="$1"
+  shift
+  local repolist=("$@")
+  local result=()
+
+  for repo in ${repolist[@]}
+  do
+    folder=$(sed -e "s/\.git$//" <<< $(basename "${repo}"))
+    repofolder="${basefolder}/${folder}"
+    result+=(${repofolder})
+  done
+
+  echo "${result[@]}"
+}
+
+echo "Yocto folder: ${pokydir} ($(basename ${pokydir}))"
 echo "Board folder: ${boarddir}"
 
 if [ "${op}" = "clone" ]; then
@@ -68,8 +80,10 @@ if [ "${op}" = "clone" ]; then
   doclone "${BRANCH}" "${opts}" "${BOARDREPOS[@]}"
   cd "${curdir}"
 elif [ "${op}" = "pull" ]; then
-  doupdate "${pokydir}/.." "${opts}" "${RELEASEREPO}"
-  doupdate "${pokydir}" "${opts}" "${SUBREPOS[@]}"
-  doupdate "${boarddir}" "${opts}" "${BOARDREPOS[@]}"
+  doupdate "${opts}" "${pokydir}"
+  folders=$(getrepofolders "${pokydir}" "${SUBREPOS[@]}")
+  doupdate "${opts}" "${folders}"
+  folders=$(getrepofolders "${boarddir}" "${BOARDREPOS[@]}")
+  doupdate "${opts}" "${folders}"
 fi
 
