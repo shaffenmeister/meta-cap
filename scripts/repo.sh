@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 RELEASE="poky"
-BRANCH="dunfell"
+branch="dunfell"
 
 curdir=$(pwd)
-op="$1"
-opts="$2"
-pokydir="$3"
-boarddir="$4"
+action=""
+opts=""
+pokydir=""
+boarddir=""
 
 RELEASEREPO=("git://git.yoctoproject.org/poky.git")
 SUBREPOS=("git://git.openembedded.org/meta-openembedded" "https://github.com/meta-qt5/meta-qt5" "git://git.yoctoproject.org/meta-security" "git://git.yoctoproject.org/meta-raspberrypi" "git://git.yoctoproject.org/meta-realtime" "https://github.com/jumpnow/meta-jumpnow")
@@ -60,26 +60,47 @@ function getrepofolders {
   echo "${result[@]}"
 }
 
+##################################################################################################
+# Parse options
+while getopts "a:b:o:p:d:" OPTION
+do
+    case $OPTION in
+    a)
+        action=${OPTARG}
+        ;;
+    b)
+        branch=$OPTARG
+        ;;
+    o)
+        opts=$OPTARG
+        ;;
+    p)
+        pokydir=$OPTARG
+        ;;
+    d)
+        boarddir=$OPTARG
+        ;;
+    esac
+done
+
 echo "Yocto folder: ${pokydir} ($(basename ${pokydir}))"
 echo "Board folder: ${boarddir}"
+echo "Branch: ${branch}"
+echo "Action: ${action} (options: ${opts})"
 
-if [ "${op}" = "clone" ]; then
-  if [ ! -d "${pokydir}" ]; then
-    mkdir -p "${pokydir}"
-  fi
 
+if [ "${action}" = "clone" ]; then
   if [ ! -d "${boarddir}" ]; then
     mkdir -p "${boarddir}"
   fi
 
+  git clone -b ${branch} ${opts} "${RELEASEREPO}" "${pokydir}"
   cd "${pokydir}"
-  doclone "${BRANCH}" "${opts}" "${RELEASEREPO}"
-  cd "${RELEASE}"
-  doclone "${BRANCH}" "${opts}" "${SUBREPOS[@]}"
+  doclone "${branch}" "${opts}" "${SUBREPOS[@]}"
   cd "${boarddir}"
-  doclone "${BRANCH}" "${opts}" "${BOARDREPOS[@]}"
+  doclone "${branch}" "${opts}" "${BOARDREPOS[@]}"
   cd "${curdir}"
-elif [ "${op}" = "pull" ]; then
+elif [ "${action}" = "pull" ]; then
   doupdate "${opts}" "${pokydir}"
   folders=$(getrepofolders "${pokydir}" "${SUBREPOS[@]}")
   doupdate "${opts}" "${folders}"
