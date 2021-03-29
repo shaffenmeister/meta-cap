@@ -3,7 +3,7 @@ HOMEPAGE = ""
 
 inherit image
 
-DEPENDS += "bootfiles"
+DEPENDS += "rpi-bootfiles"
 
 
 CORE_OS = " \

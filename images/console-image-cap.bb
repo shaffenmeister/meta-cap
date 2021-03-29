@@ -4,7 +4,7 @@ LICENSE = "MIT"
 
 require images/basic-dev-image.bb
 
-DEPENDS += "bootfiles"
+DEPENDS += "rpi-bootfiles"
 
 WIFI = " \
     crda \
