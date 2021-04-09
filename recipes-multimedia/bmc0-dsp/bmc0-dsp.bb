@@ -2,23 +2,39 @@ DESCRIPTION="dsp dsp is an audio processing program with an interactive mode."
 HOMEPAGE = "https://github.com/bmc0/dsp/"
 SECTION = "audio"
 
-DEPENDS = "alsa-lib "
-RDEPENDS_${PN} = ""
+DEPENDS = "alsa-lib ladspa-sdk libsndfile1 libmad libtool"
 
 PR = "r1"
-PV = "1.6"
+PV = "1.8"
 
 LICENSE = "ISC"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=de2331727b476fb3c5eb43114ccf2f28"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=e0e9b091d126e6e315e2d3806971e8b3"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "5af730fa04a512a2881ec67eab6aba2d6c235cea"
+SRCREV = "6f1936b28433dc8e588f6a2ecac24dfc61af0a2c"
 SRC_URI = " \
 		git://github.com/bmc0/dsp.git;protocol=git \
 	  "
 
+TARGET_LDFLAGS += " -lfftw3f "
+
 # update-rc.d
 inherit pkgconfig
+
+do_configure() {
+    oe_runmake clean
+    ./configure --prefix="${D}/usr"
+}
+
+do_compile() {
+    oe_runmake
+}
+
+do_install() {
+    oe_runmake install
+}
+
+FILES_${PN} += "${mandir}/* ${libdir}/*"
