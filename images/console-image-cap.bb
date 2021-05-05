@@ -2,7 +2,7 @@ SUMMARY = "A console development image with some C/C++ dev tools"
 HOMEPAGE = ""
 LICENSE = "MIT"
 
-require images/basic-dev-image.bb
+require images/basic-dev-image-cap.bb
 
 DEPENDS += "rpi-bootfiles"
 
@@ -19,8 +19,6 @@ WIFI = " \
 "
 
 DEV_EXTRAS = " \
-    serialecho  \
-    spiloop \
 "
 
 CAN_TOOLS = " \

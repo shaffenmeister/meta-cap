@@ -87,7 +87,6 @@ EXTRA_TOOLS = " \
 
 SECURITY_TOOLS = " \
     checksec \
-    ncrack \
     nikto \
     python3-scapy \
 "

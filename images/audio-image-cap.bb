@@ -34,7 +34,6 @@ ALSA += " \
     libavfilter \
     libavformat \
     libavutil \
-    libpostproc \
     libswresample \
     libswscale \
     alsa-conf \
