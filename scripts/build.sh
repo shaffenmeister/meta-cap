@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-IMAGES=("console-image" "console-image-cap" "audio-image-cap") # "qt5-basic-image" "qt5-image")
+IMAGES=("console-image-cap" "audio-image-cap") # "qt5-basic-image" "qt5-image")
 
 curdir=$(pwd)
 pokydir=""
