@@ -5,14 +5,14 @@ SECTION = "audio"
 DEPENDS = "meson ninja"
 
 PR = "r1"
-PV = "2.18"
+PV = "2.19"
 
 LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://COPYING;md5=06b9dfd2f197dc514d8ef06549684b77"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "f5ac35174d1a343c59f55e1135316fae80522465"
+SRCREV = "27767959442ef390aabb16790494ba93fed962ef"
 SRC_URI = "git://github.com/MusicPlayerDaemon/libmpdclient;protocol=git"
 
 EXTRA_OECMAKE=""
