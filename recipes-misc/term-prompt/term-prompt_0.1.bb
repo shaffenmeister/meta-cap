@@ -14,5 +14,5 @@ do_install() {
     install -m 0755 term-prompt.sh ${D}${sysconfdir}/profile.d
 }
 
-FILES_${PN} = "${sysconfdir}"
+FILES:${PN} = "${sysconfdir}"
 

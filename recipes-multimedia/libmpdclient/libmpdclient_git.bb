@@ -19,4 +19,4 @@ EXTRA_OECMAKE=""
 
 inherit pkgconfig meson
 
-FILES_${PN} += "${datadir}/vala/*"
+FILES:${PN} += "${datadir}/vala/*"

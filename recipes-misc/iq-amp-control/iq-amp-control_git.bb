@@ -2,7 +2,7 @@ DESCRIPTION="IQ Amp Control: Control MPD via IR commands and rotary encoders"
 HOMEPAGE = "https://github.com/shaffenmeister/iq_amp_control"
 
 DEPENDS = "alsa-lib libmpdclient"
-RDEPENDS_${PN} = " mpd libmpdclient"
+RDEPENDS:${PN} = " mpd libmpdclient"
 
 PR = "r1"
 PV = "0.1"
@@ -10,7 +10,7 @@ PV = "0.1"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5869cac4966c50d74387d9d08a5bdd12"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 

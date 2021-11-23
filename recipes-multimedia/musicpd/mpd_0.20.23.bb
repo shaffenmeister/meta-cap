@@ -59,13 +59,13 @@ PACKAGECONFIG[upnp] = "--enable-upnp,--disable-upnp,libupnp"
 PACKAGECONFIG[vorbis] = "--enable-vorbis,--disable-vorbis,libvorbis libogg"
 PACKAGECONFIG[wavpack] = "--enable-wavpack,--disable-wavpack,wavpack"
 
-FILES_${PN} += "/usr/share/icons/*"
+FILES:${PN} += "/usr/share/icons/*"
 
-do_configure_prepend() {
+do_configure:prepend() {
     sed -i -e 's|libsystemd-daemon|libsystemd|' ${S}/configure.ac
 }
 
-do_install_append() {
+do_install:append() {
     install -d ${D}/${localstatedir}/lib/mpd/music
     chmod 775 ${D}/${localstatedir}/lib/mpd/music
     install -d ${D}/${localstatedir}/lib/mpd/playlists
@@ -89,13 +89,13 @@ do_install_append() {
     fi
 }
 
-RPROVIDES_${PN} += "${PN}-systemd"
-RREPLACES_${PN} += "${PN}-systemd"
-RCONFLICTS_${PN} += "${PN}-systemd"
-SYSTEMD_SERVICE_${PN} = "mpd.socket"
+RPROVIDES:${PN} += "${PN}-systemd"
+RREPLACES:${PN} += "${PN}-systemd"
+RCONFLICTS:${PN} += "${PN}-systemd"
+SYSTEMD_SERVICE:${PN} = "mpd.socket"
 
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = " \
+USERADD_PARAM:${PN} = " \
     --system --no-create-home \
     --home ${localstatedir}/lib/mpd \
     --groups audio \

@@ -10,7 +10,7 @@ PV = "1.8"
 LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e0e9b091d126e6e315e2d3806971e8b3"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 
@@ -37,4 +37,4 @@ do_install() {
     oe_runmake install
 }
 
-FILES_${PN} += "${mandir}/* ${libdir}/*"
+FILES:${PN} += "${mandir}/* ${libdir}/*"

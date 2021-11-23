@@ -1,1 +1,1 @@
-CFLAGS_append_armv6 = " -DMISSING_64BIT_ATOMICS"
+CFLAGS:append:armv6 = " -DMISSING_64BIT_ATOMICS"

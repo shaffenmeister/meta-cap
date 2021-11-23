@@ -3,7 +3,7 @@ HOMEPAGE = "https://www.ympd.org/"
 SECTION = "audio"
 
 DEPENDS = "libmpdclient"
-RDEPENDS_ympd = "libmpdclient (>=2.0)"
+RDEPENDS:ympd = "libmpdclient (>=2.0)"
 
 PR = "r3"
 PV = "1.3.0m"
@@ -11,7 +11,7 @@ PV = "1.3.0m"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=eb723b61539feef013de476e68b5c50a"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 

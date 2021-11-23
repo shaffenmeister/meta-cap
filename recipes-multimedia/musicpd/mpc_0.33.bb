@@ -3,7 +3,7 @@ SUMMARY = "A minimalist command line interface to MPD."
 HOMEPAGE = "https://www.musicpd.org/clients/mpc/"
 
 DEPENDS = "libmpdclient"
-RRECOMMENDS_${PN} = "mpd"
+RRECOMMENDS:${PN} = "mpd"
 
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"

@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/owntone/"
 SECTION = "audio"
 
 DEPENDS = "libgcrypt libplist libsodium gperf gperftools libtool gettext gawk libunistring sqlite3 antlr3 libconfuse libunistring "
-RDEPENDS_forked_daapd = "libgcrypt libplist libsodium gperf gperftools libconfuse "
+RDEPENDS:forked_daapd = "libgcrypt libplist libsodium gperf gperftools libconfuse "
 
 PR = "r1"
 PV = "27.4"
@@ -11,7 +11,7 @@ PV = "27.4"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 

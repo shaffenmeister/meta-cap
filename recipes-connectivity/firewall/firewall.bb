@@ -18,6 +18,6 @@ do_install() {
     install -m 0744 firewall.rules ${D}${sysconfdir}
 }
 
-FILES_${PN} = "${sysconfdir}"
+FILES:${PN} = "${sysconfdir}"
 
-RDEPENDS_${PN} = "iptables"
+RDEPENDS:${PN} = "iptables"

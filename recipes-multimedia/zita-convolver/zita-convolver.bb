@@ -8,14 +8,14 @@ LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://../COPYING;md5=d32239bcb673463ab874e80d47fae504"
 
 DEPENDS = " fftwf libsndfile1 "
-RPROVIDES_${PN} = "libzita-convolver4"
+RPROVIDES:${PN} = "libzita-convolver4"
 
 SRC_URI[md5sum] = "a357f6ff8588eb53af5335968cfacf3a"
 SRC_URI[sha256sum] = "9aa11484fb30b4e6ef00c8a3281eebcfad9221e3937b1beb5fe21b748d89325f"
 
 S = "${WORKDIR}/zita-convolver-4.0.3/source"
 
-FILES_${PN} = " ${libdir} "
+FILES:${PN} = " ${libdir} "
 
 do_compile() {
  ${CXX} ${CXXFLAGS} -I. -D_REENTRANT -D_POSIX_PTHREAD_SEMANTICS -DENABLE_VECTOR_MODE -ffast-math -fPIC -c zita-convolver.cc

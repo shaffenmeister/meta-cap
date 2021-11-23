@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=384d14e85a436385716abe91e41ae9cd"
 #PV = "1.3.19"
 PV = "2.5.1"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI = " \
 		https://tls.mbed.org/download/mbedtls-${PV}-gpl.tgz \

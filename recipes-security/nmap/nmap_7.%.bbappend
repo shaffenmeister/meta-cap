@@ -1,1 +1,1 @@
-PACKAGECONFIG_append = " pcre ssl ssh2 libz"
+PACKAGECONFIG:append = " pcre ssl ssh2 libz"

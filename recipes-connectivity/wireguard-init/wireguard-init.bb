@@ -16,6 +16,6 @@ do_install() {
     install -m 0755 init ${D}${sysconfdir}/init.d/wireguard
 }
 
-FILES_${PN} = "${sysconfdir}"
+FILES:${PN} = "${sysconfdir}"
 
-RDEPENDS_${PN} = "wireguard-tools"
+RDEPENDS:${PN} = "wireguard-tools"

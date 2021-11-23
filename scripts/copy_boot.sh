@@ -3,24 +3,40 @@
 KERNEL_IMAGETYPE=zImage
 
 if [ -z "${MACHINE}" ]; then
-    echo "Environment variable MACHINE not set"
-    echo "Example: export MACHINE=raspberrypi3 or export MACHINE=raspberrypi0-wifi"
-    exit 1
+    # try to find it
+    if [ -f ../../build/conf/local.conf ]; then
+        MACHINE=$(grep '^MACHINE' ../../build/conf/local.conf | grep -v MACHINE_ | awk '{ print $3 }' | sed 's/"//g')
+    fi
+
+    if [ -z "${MACHINE}" ]; then
+        echo "Environment variable MACHINE not set"
+        echo "Example: export MACHINE=raspberrypi4|raspberrypi3|raspberrypi0-wifi"
+        exit 1
+    fi
 fi
+
+echo "MACHINE: ${MACHINE}"
 
 case "${MACHINE}" in
     raspberrypi|raspberrypi0|raspberrypi0-wifi|raspberrypi-cm)
-        DTBS="bcm2708-rpi-0-w.dtb \
+        DTBS="bcm2708-rpi-zero.dtb \
+              bcm2708-rpi-zero-w.dtb \
               bcm2708-rpi-b.dtb \
               bcm2708-rpi-b-plus.dtb \
               bcm2708-rpi-cm.dtb"
         ;;
+
     raspberrypi2|raspberrypi3|raspberrypi-cm3)
         DTBS="bcm2709-rpi-2-b.dtb \
               bcm2710-rpi-3-b.dtb \
               bcm2710-rpi-3-b-plus.dtb \
               bcm2710-rpi-cm3.dtb"
         ;;
+
+    raspberrypi4)
+        DTBS="bcm2711-rpi-4-b.dtb"
+        ;;
+
     *)
         echo "Invalid MACHINE: ${MACHINE}"
         exit 1
@@ -31,10 +47,8 @@ BOOTLDRFILES="bootcode.bin \
               config.txt \
               fixup_cd.dat \
               fixup.dat \
-              fixup_db.dat \
               fixup_x.dat \
               start_cd.elf \
-              start_db.elf \
               start.elf \
               start_x.elf"
 
@@ -43,16 +57,38 @@ if [ "x${1}" = "x" ]; then
     exit 0
 fi
 
+mount | grep '^/' | grep -q ${1}
+
+if [ $? -ne 1 ]; then
+    echo "Looks like partitions on device /dev/${1} are mounted"
+    echo "Not going to work on a device that is currently in use"
+    mount | grep '^/' | grep ${1}
+    exit 1
+fi
+
 if [ ! -d /media/card ]; then
     echo "Temporary mount point [/media/card] not found"
     exit 1
 fi
 
 if [ -z "$OETMP" ]; then
-    echo -e "\nWorking from local directory"
-    SRCDIR=.
+    # echo try to find it
+    if [ -f ../../build/conf/local.conf ]; then
+        OETMP=$(grep '^TMPDIR' ../../build/conf/local.conf | awk '{ print $3 }' | sed 's/"//g')
+    fi
+
+    if [ -z "$OETMP" ]; then
+        if [ -d "../../build/tmp" ]; then
+            OETMP="../../build/tmp"
+        fi
+    fi
+fi
+
+if [ -z "$OETMP" ]; then
+    echo "Environment variable OETMP not set"
+    exit 1
 else
-    echo -e "\nOETMP: $OETMP"
+    echo "OETMP: $OETMP"
 
     if [ ! -d ${OETMP}/deploy/images/${MACHINE} ]; then
         echo "Directory not found: ${OETMP}/deploy/images/${MACHINE}"
@@ -63,8 +99,8 @@ else
 fi
 
 for f in ${BOOTLDRFILES}; do
-    if [ ! -f ${SRCDIR}/bcm2835-bootfiles/${f} ]; then
-        echo "Bootloader file not found: ${SRCDIR}/bcm2835-bootfiles/$f"
+    if [ ! -f ${SRCDIR}/bootfiles/${f} ]; then
+        echo "Bootloader file not found: ${SRCDIR}/bootfiles/$f"
         exit 1
     fi
 done
@@ -113,7 +149,7 @@ if [ "$?" -ne 0 ]; then
 fi
 
 echo "Copying bootloader files"
-sudo cp ${SRCDIR}/bcm2835-bootfiles/* /media/card
+sudo cp ${SRCDIR}/bootfiles/* /media/card
 
 if [ $? -ne 0 ]; then
     echo "Error copying bootloader files"
@@ -216,4 +252,3 @@ echo "Unmounting ${DEV}"
 sudo umount ${DEV}
 
 echo "Done"
-

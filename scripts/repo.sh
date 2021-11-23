@@ -9,8 +9,8 @@ pokydir=""
 boarddir=""
 
 RELEASEREPO=("git://git.yoctoproject.org/poky.git")
-SUBREPOS=("git://git.openembedded.org/meta-openembedded" "https://github.com/meta-qt5/meta-qt5" "git://git.yoctoproject.org/meta-security" "git://git.yoctoproject.org/meta-raspberrypi" "git://git.yoctoproject.org/meta-realtime" "https://github.com/jumpnow/meta-jumpnow")
-BOARDREPOS=("git://github.com/jumpnow/meta-rpi" "git://github.com/shaffenmeister/meta-cap")
+SUBREPOS=("git://git.openembedded.org/meta-openembedded" "https://github.com/meta-qt5/meta-qt5" "git://git.yoctoproject.org/meta-security" "git://git.yoctoproject.org/meta-raspberrypi")
+BOARDREPOS=("git://github.com/shaffenmeister/meta-cap" "https://github.com/jumpnow/meta-rpi")
 
 function getfolderfromgituri {
   local gituri="$1"

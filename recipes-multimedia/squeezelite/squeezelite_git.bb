@@ -5,16 +5,16 @@ LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=1a2638a748e0524c9fde16d50c85f5d9"
 
 DEPENDS = "alsa-lib alsa-utils alsa-tools alsa-plugins flac libogg libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr libopus opusfile"
-RDEPENDS_${PN} = "flac (>=1.3) libogg (>=1.3.0) libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr (>=0.1.0) libopus opusfile"
+RDEPENDS:${PN} = "flac (>=1.3) libogg (>=1.3.0) libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr (>=0.1.0) libopus opusfile"
 
 OPTS = "-DDSD -DFFMPEG -DRESAMPLE -DGPIO -DIR -DRPI -DOPUS -I=/usr/include/opus"
 TARGET_CFLAGS  += "-Wall -fPIC -O2 ${OPTS}"
 TARGET_LDFLAGS += "-lasound -lpthread -lm -lrt -ldl"
 
 PR = "r5"
-PV = "v1.9.9-1372"
+PV = "v1.9.9-1392"
 
-SRCREV = "6042393115c69280f9891945a57bc81a3e32162d"
+SRCREV = "790f8bda0d906e55c813493eae095bc2d295e8da"
 
 SRC_URI = " \
     git://github.com/ralph-irving/squeezelite.git;protocol=git \
@@ -39,6 +39,6 @@ do_install () {
     install -m 0664 ${WORKDIR}/init ${D}${sysconfdir}/init.d/squeezelite
 }
 
-RDEPENDS_${PN} += ""
+RDEPENDS:${PN} += ""
 
-FILES_${PN} = "${bindir} ${sysconfdir}"
+FILES:${PN} = "${bindir} ${sysconfdir}"
