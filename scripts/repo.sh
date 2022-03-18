@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 RELEASE="poky"
-branch="dunfell"
+branch="honister"
 
 curdir=$(pwd)
 action=""
@@ -9,7 +9,7 @@ pokydir=""
 boarddir=""
 
 RELEASEREPO=("git://git.yoctoproject.org/poky.git")
-SUBREPOS=("git://git.openembedded.org/meta-openembedded" "https://github.com/meta-qt5/meta-qt5" "git://git.yoctoproject.org/meta-security" "git://git.yoctoproject.org/meta-raspberrypi")
+SUBREPOS=("git://git.openembedded.org/meta-openembedded" "https://github.com/meta-qt5/meta-qt5" "git://git.yoctoproject.org/meta-security" "git://git.yoctoproject.org/meta-java" "git://git.yoctoproject.org/meta-raspberrypi")
 BOARDREPOS=("git://github.com/shaffenmeister/meta-cap" "https://github.com/jumpnow/meta-rpi")
 
 function getfolderfromgituri {
