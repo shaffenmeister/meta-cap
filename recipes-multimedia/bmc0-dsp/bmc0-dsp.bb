@@ -14,7 +14,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "6f1936b28433dc8e588f6a2ecac24dfc61af0a2c"
+SRCREV = "f3ac94b546361260349edeea5f1ee0ce7fac322a"
 SRC_URI = " \
 		git://github.com/bmc0/dsp.git;protocol=git \
 	  "
