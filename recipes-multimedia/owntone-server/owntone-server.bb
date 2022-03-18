@@ -2,11 +2,13 @@ DESCRIPTION="Linux/FreeBSD DAAP (iTunes) and MPD media server with support for A
 HOMEPAGE = "https://github.com/owntone/"
 SECTION = "audio"
 
-DEPENDS = "libgcrypt libplist libsodium gperf gperftools libtool gettext gawk libunistring sqlite3 antlr3 libconfuse libunistring "
-RDEPENDS:forked_daapd = "libgcrypt libplist libsodium gperf gperftools libconfuse "
+DEPENDS = "libgcrypt libunistring zlib confuse libmxml sqlite3 libevent json-c libantlr3c ffmpeg avahi libplist libsodium libwebsockets \
+           gperf-native antlr3-native curl protobuf-c \
+          "
+RDEPENDS:${PN} += " libgcc"
 
 PR = "r1"
-PV = "27.4"
+PV = "28.3"
 
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
@@ -15,10 +17,32 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "0d1e22496c339dcae69517283856328343d7a44b"
+SRCREV = "a95b226fdb04654291b3328395ec9f7f52d54f53"
 SRC_URI = " \
 		git://github.com/owntone/owntone-server.git;protocol=git \
 	  "
 
 # update-rc.d
-inherit autotools pkgconfig
+inherit autotools pkgconfig useradd
+
+EXTRA_OECONF = "--disable-dependency-tracking"
+
+do_install:append() {
+    chown -R owntone ${D}/${localstatedir}/cache/owntone/
+    install -d ${D}${systemd_system_unitdir}
+    install -m 0644 ${WORKDIR}/build/owntone.service ${D}${systemd_system_unitdir}/owntone.service
+
+}
+
+
+FILES:${PN} += "${libdir}/owntone/owntone-sqlext.so ${datadir}/owntone/htdocs/* /run ${systemd_system_unitdir}/owntone.service"
+
+USERADD_PACKAGES = "${PN}"
+USERADD_PARAM:${PN} = " \
+    --system --no-create-home \
+    --home ${localstatedir}/cache/owntone \
+    --groups audio \
+    --user-group owntone"
+
+SYSTEMD_SERVICE:${PN} = "owntone.service"
+

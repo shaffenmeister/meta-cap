@@ -1,0 +1,13 @@
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -64,7 +64,7 @@
+ 
+ libantlr3c_la_LDFLAGS = -avoid-version
+ 
+-INCLUDES = -Iinclude
++INCLUDES = -I$(top_srcdir)/include
+ 
+ EXTRA_DIST = 	\
+ 				vsrulefiles/antlr3lexerandparser.rules		\
