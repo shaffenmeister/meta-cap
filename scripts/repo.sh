@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 RELEASE="poky"
-branch="dunfell"
+branch="kirkstone"
 
 curdir=$(pwd)
 action=""
@@ -8,9 +8,9 @@ opts=""
 pokydir=""
 boarddir=""
 
-RELEASEREPO=("git://git.yoctoproject.org/poky.git")
-SUBREPOS=("git://git.openembedded.org/meta-openembedded" "https://github.com/meta-qt5/meta-qt5" "git://git.yoctoproject.org/meta-security" "git://git.yoctoproject.org/meta-raspberrypi" "git://git.yoctoproject.org/meta-realtime" "https://github.com/jumpnow/meta-jumpnow")
-BOARDREPOS=("git://github.com/jumpnow/meta-rpi" "git://github.com/shaffenmeister/meta-cap")
+RELEASEREPO=("https://git.yoctoproject.org/poky.git")
+SUBREPOS=("https://git.openembedded.org/meta-openembedded" "https://github.com/meta-qt5/meta-qt5" "https://git.yoctoproject.org/meta-security" "https://git.yoctoproject.org/meta-raspberrypi" "https://git.yoctoproject.org/meta-realtime" "https://github.com/jumpnow/meta-jumpnow")
+BOARDREPOS=("https://github.com/jumpnow/meta-rpi" "https://github.com/shaffenmeister/meta-cap")
 
 function getfolderfromgituri {
   local gituri="$1"
@@ -107,4 +107,3 @@ elif [ "${action}" = "pull" ]; then
   folders=$(getrepofolders "${boarddir}" "${BOARDREPOS[@]}")
   doupdate "${opts}" "${folders}"
 fi
-
