@@ -11,7 +11,6 @@ DEPENDS += "bcm2835-bootfiles"
 
 CORE_OS = " \
     openssh openssh-keygen openssh-sftp-server \
-    term-prompt \
     tzdata \
     tzdata-europe \
     tzdata-posix \

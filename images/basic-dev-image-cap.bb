@@ -1,15 +1,16 @@
 SUMMARY = "A console development image with some C/C++ dev tools"
 HOMEPAGE = "http://www.jumpnowtek.com"
 
+inherit image
+
 IMAGE_FEATURES += "package-management"
 IMAGE_LINGUAS = "en-us"
 
-inherit image
+DEPENDS += "rpi-bootfiles"
 
 CORE_OS = " \
     openssh openssh-keygen openssh-sftp-server \
     packagegroup-core-boot \
-    term-prompt \
     tzdata \
     tzdata-europe \
     tzdata-posix \
@@ -17,12 +18,6 @@ CORE_OS = " \
 
 KERNEL_EXTRA = " \
     kernel-modules \
-"
-
-WIREGUARD = " \
-    wireguard-init \
-    ${@bb.utils.contains('WIREGUARD_COMPAT', '1', 'wireguard-module', '', d)} \
-    wireguard-tools \
 "
 
 DEV_SDK = " \
@@ -61,7 +56,6 @@ EXTRA_TOOLS = " \
     ethtool \
     fbset \
     findutils \
-    firewall \
     grep \
     i2c-tools \
     ifupdown \
@@ -75,7 +69,6 @@ EXTRA_TOOLS = " \
     ntp ntp-tickadj \
     parted \
     procps \
-    rndaddtoentcnt \
     sysfsutils \
     tcpdump \
     util-linux \
@@ -85,18 +78,22 @@ EXTRA_TOOLS = " \
     zip \
 "
 
-SECURITY_TOOLS = " \
+RPI_STUFF = " \
+    userland \
+"
+
+SECURITY = " \
     checksec \
-    ncrack \
+    firewall \
     nikto \
+    nmap \
     python3-scapy \
+    wireguard-tools \
 "
 
 WIFI = " \
     crda \
     iw \
-    linux-firmware-rpidistro-bcm43430 \
-    linux-firmware-rpidistro-bcm43455 \
     wpa-supplicant \
 "
 
@@ -105,9 +102,8 @@ IMAGE_INSTALL += " \
     ${DEV_SDK} \
     ${EXTRA_TOOLS} \
     ${KERNEL_EXTRA} \
-    ${SECURITY_TOOLS} \
-    ${WIREGUARD} \
-    ${WIFI} \
+    ${RPI_STUFF} \
+    ${SECURITY} \
 "
 
 IMAGE_FILE_BLACKLIST += " \

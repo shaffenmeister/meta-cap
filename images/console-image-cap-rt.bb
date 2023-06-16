@@ -1,7 +1,7 @@
 SUMMARY = "A console image that runs linux with realtime patches"
 HOMEPAGE = ""
 
-require images/basic-dev-image.bb
+require images/basic-dev-image-cap.bb
 
 DEPENDS += "bcm2835-bootfiles"
 DEPENDS += "(linux-raspberrypi-rt|linux-raspberrypi-rt-dev)"

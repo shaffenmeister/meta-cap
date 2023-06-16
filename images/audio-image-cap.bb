@@ -1,13 +1,16 @@
 SUMMARY = "A minimal console image that runs squeezelite"
 HOMEPAGE = ""
 
+# include recipes-core/images/core-image-base.bb
+
 inherit image
 
-DEPENDS += "bootfiles"
+COMPATIBLE_MACHINE = "^rpi$"
+
+DEPENDS += "rpi-bootfiles"
 
 
 CORE_OS = " \
-    firewall \
     ifupdown \
     iptables \
     kernel-modules \
@@ -16,8 +19,6 @@ CORE_OS = " \
     openssh openssh-keygen openssh-sftp-server \
     packagegroup-core-boot \
     procps \
-    rndaddtoentcnt \
-    term-prompt \
     tzdata \
     tzdata-europe \
     tzdata-posix \
@@ -34,7 +35,6 @@ ALSA += " \
     libavfilter \
     libavformat \
     libavutil \
-    libpostproc \
     libswresample \
     libswscale \
     alsa-conf \
@@ -46,16 +46,16 @@ ALSA += " \
 AUDIO = " \
     squeezelite \
     ladspa-sdk \
-    bmc0-dsp \
     mpd \
     mpc \
 "
 
-IMAGE_INSTALL += " \
+IMAGE_INSTALL:append = " \
     ${ALSA} \
     ${AUDIO} \
     ${CORE_OS} \
 "
+
 
 set_local_timezone() {
     ln -sf /usr/share/zoneinfo/Europe/Berlin ${IMAGE_ROOTFS}/etc/localtime

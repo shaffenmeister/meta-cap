@@ -4,8 +4,8 @@ LICENSE = "MIT"
 
 IMAGE_FEATURES += "package-management splash"
 IMAGE_LINGUAS = "en-us"
-KERNEL_CMDLINE_append = " root=/dev/sda1 rootrw=/dev/sda2"
-IMAGE_INSTALL_append = " initscripts-readonly-rootfs-overlay"
+KERNEL_CMDLINE:append = " root=/dev/sda1 rootrw=/dev/sda2"
+IMAGE_INSTALL:append = " initscripts-readonly-rootfs-overlay"
 
 inherit core-image
 
@@ -13,7 +13,6 @@ DEPENDS += "bcm2835-bootfiles"
 
 CORE_OS = " \
     openssh openssh-keygen openssh-sftp-server \
-    term-prompt \
     tzdata \
     tzdata-europe \
     tzdata-posix \
