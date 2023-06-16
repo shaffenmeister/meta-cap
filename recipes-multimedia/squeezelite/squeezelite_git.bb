@@ -1,23 +1,23 @@
-DESCRIPTION = "Squeezelite v1.9.7"
+DESCRIPTION = "Squeezelite v1.9.9"
 AUTHOR = "Adrian Smith, Ralph Irving"
 HOMEPAGE = "https://github.com/ralph-irving/squeezelite"
-LICENSE = "GPLv3"
-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=1a2638a748e0524c9fde16d50c85f5d9"
+LICENSE = "GPL-3.0-only"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=0c8c6cd22c1c43af1c36685ade0fe49b"
 
-DEPENDS = "alsa-lib alsa-utils alsa-tools alsa-plugins flac libogg libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr libopus opusfile"
-RDEPENDS:${PN} = "flac (>=1.3) libogg (>=1.3.0) libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr (>=0.1.0) libopus opusfile"
+DEPENDS = "alsa-lib alsa-utils alsa-tools alsa-plugins flac libogg libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr libopus opusfile openssl"
+RDEPENDS:${PN} = "flac (>=1.3) libogg (>=1.3.0) libvorbis libmad faad2 mpg123 ffmpeg sox lirc libsoxr (>=0.1.0) libopus opusfile openssl"
 
-OPTS = "-DDSD -DFFMPEG -DRESAMPLE -DGPIO -DIR -DRPI -DOPUS -I=/usr/include/opus"
-TARGET_CFLAGS  += "-Wall -fPIC -O2 ${OPTS}"
-TARGET_LDFLAGS += "-lasound -lpthread -lm -lrt -ldl"
+OPTS = "-DDSD -DFFMPEG -DRESAMPLE -DGPIO -DIR -DRPI -DOPUS -DUSE_SSL -DLINKALL -I=/usr/include/opus"
+#TARGET_CFLAGS  += "-Wall -fPIC -O2 ${OPTS} -g "
+#TARGET_LDFLAGS += "-lasound -lpthread "
 
 PR = "r5"
-PV = "v1.9.9-1403"
+PV = "v1.9.9-1432"
 
-SRCREV = "bc72c0de3fff771540a2a45aaafafed539387b3c"
+SRCREV = "575b59398dd19945d2038474062240fc527407fb"
 
 SRC_URI = " \
-    git://github.com/ralph-irving/squeezelite.git;protocol=https \
+    git://github.com/ralph-irving/squeezelite.git;protocol=https;branch=master \
     file://default \
     file://init \
  "
@@ -25,7 +25,7 @@ SRC_URI = " \
 S = "${WORKDIR}/git"
 
 do_compile () {
-    make OPTS="${OPTS}"
+    make --file=Makefile OPTS="${OPTS}"
 }
 
 do_install () {
