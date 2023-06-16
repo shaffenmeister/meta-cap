@@ -3,22 +3,27 @@ HOMEPAGE = "https://github.com/bmc0/dsp/"
 SECTION = "audio"
 
 DEPENDS = "alsa-lib "
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
+
+inherit pkgconfig
 
 PR = "r1"
-PV = "1.6"
+PV = "1.9"
 
 LICENSE = "ISC"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=de2331727b476fb3c5eb43114ccf2f28"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=e0e9b091d126e6e315e2d3806971e8b3"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "5af730fa04a512a2881ec67eab6aba2d6c235cea"
-SRC_URI = " \
-		git://github.com/bmc0/dsp.git;protocol=git \
-	  "
+SRCREV = "37aafe2b76bac20e49a729d3bf66800d501fa658"
+SRC_URI = "git://github.com/bmc0/dsp.git;protocol=https;branch=master"
 
-# update-rc.d
-inherit pkgconfig
+PACKAGES += "dsp "
+FILES:dsp = "${bindir}/dsp"
+
+do_install(){
+        install -m 0755 ${S}/dsp ${D}/usr/bin/dsp
+}
+
