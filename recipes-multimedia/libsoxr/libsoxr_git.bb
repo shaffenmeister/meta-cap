@@ -9,7 +9,7 @@ PV = "0.1.3"
 
 ${S} = "${WORKDIR}/soxr-${PV}-Source"
 
-LICENSE = "LGPLv2.1"
+LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/soxr-${PV}-Source/COPYING.LGPL;md5=8c2e1ec1540fb3e0beb68361344cba7e"
 
 SRC_URI = "${SOURCEFORGE_MIRROR}/soxr/files/soxr-${PV}-Source.tar.xz"
